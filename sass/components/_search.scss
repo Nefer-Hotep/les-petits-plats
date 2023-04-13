@@ -1,0 +1,29 @@
+.search-input-container {
+    margin-top: 17px;
+    position: relative;
+}
+
+.search-input-container input {
+    padding: 23px;
+    width: 100%;
+    padding-right: 40px;
+    background-color: $color-secondary;
+    border-radius: $radius-primary;
+    border: none;
+}
+
+.search-input-container input:focus {
+    background-color: $color-secondary;
+}
+.search-input-wrapper {
+    width: 100%;
+    position: relative;
+    @extend %flex-center;
+}
+
+.search-input-container svg {
+    position: absolute;
+    height: 20px;
+    width: auto;
+    right: 20px;
+}

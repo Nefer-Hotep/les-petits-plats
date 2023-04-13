@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="./style/index.css" />
+
+        <title>Les petits plats</title>
+    </head>
+    <body>
+        <header class="container">
+            <div class="header">
+                <img
+                    class="logo"
+                    src="./assets/logo.svg"
+                    alt="Le logo représentant une toque de chef."
+                />
+                <h1 class="">Les petits plats</h1>
+            </div>
+        </header>
+        <main class="container">
+            <section>
+                <form class="search-input-container">
+                    <div class="search-input-wrapper">
+                        <input
+                            type="text"
+                            class="f"
+                            placeholder="Rechercher un recette"
+                            id="search"
+                            aria-label="Rechercher une recette"
+                            autocomplete="off"
+                        />
+                        <svg
+                            width="33"
+                            height="33"
+                            viewBox="0 0 33 33"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M23.4167 20.6667H21.9683L21.455 20.1717C23.2517 18.0817 24.3333 15.3683 24.3333 12.4167C24.3333 5.835 18.9983 0.5 12.4167 0.5C5.835 0.5 0.5 5.835 0.5 12.4167C0.5 18.9983 5.835 24.3333 12.4167 24.3333C15.3683 24.3333 18.0817 23.2517 20.1717 21.455L20.6667 21.9683V23.4167L29.8333 32.565L32.565 29.8333L23.4167 20.6667ZM12.4167 20.6667C7.85167 20.6667 4.16667 16.9817 4.16667 12.4167C4.16667 7.85167 7.85167 4.16667 12.4167 4.16667C16.9817 4.16667 20.6667 7.85167 20.6667 12.4167C20.6667 16.9817 16.9817 20.6667 12.4167 20.6667Z"
+                                fill="black"
+                            />
+                        </svg>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <div class="dropdown-container">
+                    <input
+                        class=""
+                        type="text"
+                        aria-expanded="false"
+                        placeholder="Ingredients"
+                    />
+                    <ul class="">
+                        <li><a class="" href="#">Action</a></li>
+                        <li>
+                            <a class="" href="#">Another action</a>
+                        </li>
+                        <li>
+                            <a class="" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card__image">
+                            <img src="" alt="" />
+                        </div>
+                        <div class="card__content">
+                            <div class="card__header">
+                                <h2>Limonade de coco</h2>
+                                <span>10 min</span>
+                            </div>
+                            <div class="card__text">
+                                    <ul class="card__recipe-list">
+                                        <li><span class="card__recipe-list-name">Lait de coco :</span>400ml</li>
+                                        <li><span class="card__recipe-list-name">Lait de coco :</span>400ml</li>
+                                        <li><span class="card__recipe-list-name">Lait de coco :</span>400ml</li>
+                                        <li><span class="card__recipe-list-name">Lait de coco :</span>400ml</li>
+                                        <li><span class="card__recipe-list-name">Lait de coco :</span>400ml</li>
+                                    </ul>
+                                    <p class="card__recipe-instruction">
+                                        Mettre les glaçons à votre goût dans le
+                                        blender, ajouter le lait, la crème de
+                                        coco, le jus de citrons et le sucre.
+                                        Mixer jusqu'à avoir la constitence
+                                        désirée.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

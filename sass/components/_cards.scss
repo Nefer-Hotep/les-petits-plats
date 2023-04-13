@@ -1,0 +1,47 @@
+.grid {
+    display: flex;
+    margin-top: 25px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 364px;
+    width: 380px;
+    background-color: $color-card;
+    border-radius: $radius-primary;
+    overflow: hidden;
+
+    &__image {
+        height: 178px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        height: 186px;
+        padding: 20px;
+        background-color: $color-secondary;
+        font-size: 12px;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        background-color: $color-secondary;
+    }
+
+    &__text {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__recipe-list {
+        width: 50%;
+    }
+
+    &__recipe-instruction {
+        width: 50%;
+    }
+}

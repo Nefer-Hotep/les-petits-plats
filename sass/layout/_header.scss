@@ -1,0 +1,8 @@
+.header {
+    @extend %flex-center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 51px;
+}
