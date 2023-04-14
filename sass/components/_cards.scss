@@ -1,5 +1,7 @@
 .grid {
-    display: flex;
+    @extend %flex-center;
+    flex-wrap: wrap;
+    gap: 50px;
     margin-top: 25px;
 }
 
@@ -8,6 +10,7 @@
     flex-direction: column;
     height: 364px;
     width: 380px;
+    // width: auto 0;
     background-color: $color-card;
     border-radius: $radius-primary;
     overflow: hidden;
@@ -30,6 +33,14 @@
         justify-content: space-between;
         background-color: $color-secondary;
     }
+    &__timer {
+        font-weight: 700;
+        font-size: 18px;
+        @extend %flex-center;
+        img {
+            padding-right: 7px;
+        }
+    }
 
     &__text {
         margin-top: 20px;
@@ -38,6 +49,7 @@
     }
 
     &__recipe-list {
+        font-weight: 700;
         width: 50%;
     }
 

@@ -1,3 +1,27 @@
-.dropdown-container {
-    padding-top: 50px;
+.dropdown {
+    padding-top: 20px;
+
+    &__btn {
+        background-color: $color-device;
+        width: 170px;
+        
+        &img {
+            position: absolute;
+        }
+    }
+
+    &__input {
+        color: $text-secondary;
+        border: none;
+        border-radius: $radius-primary;
+        background-color: $color-ingredients;
+        width: 170px;
+        height: 69px;
+        padding-left: 10px;
+
+        &::placeholder {
+            color: $text-secondary;
+            padding-left: 10px;
+        }
+    }
 }
