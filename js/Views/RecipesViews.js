@@ -17,26 +17,23 @@ class RecipesViews {
                     </div>
                     <div class="card__text">
                         <ul class="card__recipe-list">
-                            <li>
-                                <span class="card__recipe-list-name"
-                                    >Lait de coco :</span>400ml
-                            </li>
-                            <li>
-                                <span class="card__recipe-list-name"
-                                >Lait de coco :</span>400ml
-                            </li>
-                            <li>
-                                <span class="card__recipe-list-name"
-                                >Lait de coco :</span>400ml
-                            </li>
-                            <li>
-                                <span class="card__recipe-list-name"
-                                >Lait de coco :</span>400ml
-                            </li>
-                            <li>
-                                <span class="card__recipe-list-name"
-                                >Lait de coco :</span>400ml
-                            </li>
+                              ${recipes[i].ingredients
+                                  .map(
+                                      (ingredient) => `
+                                <li>
+                                    <span class="card__recipe-list-name">
+                                    ${ingredient.ingredient}
+                                    </span>
+                                    ${
+                                        !!ingredient.quantity
+                                            ? ' :' + ' ' + ingredient.quantity
+                                            : ''
+                                    }  
+                                    ${!!ingredient.unit ? ingredient.unit : ''} 
+                                </li>
+                            `
+                                  )
+                                  .join('')}
                         </ul>
                         <p class="card__recipe-instruction">
                                     ${recipes[i].description}

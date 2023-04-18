@@ -10,7 +10,6 @@
     flex-direction: column;
     height: 364px;
     width: 380px;
-    // width: auto 0;
     background-color: $color-card;
     border-radius: $radius-primary;
     overflow: hidden;
@@ -26,6 +25,7 @@
         padding: 20px;
         background-color: $color-secondary;
         font-size: 12px;
+        overflow: hidden;
     }
 
     &__header {
@@ -54,6 +54,10 @@
     }
 
     &__recipe-instruction {
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
         width: 50%;
     }
 }
