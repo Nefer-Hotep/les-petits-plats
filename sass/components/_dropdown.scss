@@ -1,27 +1,79 @@
-.dropdown {
+.dropdown-container {
+    display: flex;
+    flex-wrap: wrap;
     padding-top: 20px;
+    width: 100%;
+    gap: 20px;
+}
 
-    &__btn {
-        background-color: $color-device;
-        width: 170px;
-        
-        &img {
+.dropdown {
+    &-btn {
+        position: relative;
+
+        i {
             position: absolute;
+            color: $text-secondary;
+            top: 25px;
+            right: 15px;
         }
     }
 
-    &__input {
+    &-input {
         color: $text-secondary;
         border: none;
         border-radius: $radius-primary;
         background-color: $color-ingredients;
         width: 170px;
         height: 69px;
-        padding-left: 10px;
+        padding-left: 20px;
 
         &::placeholder {
             color: $text-secondary;
-            padding-left: 10px;
+        }
+        &:focus {
+            border: none;
+            outline: none;
         }
     }
+
+    &-menu {
+        position: absolute;
+        background-color: $color-ingredients;
+        font-weight: 400;
+        opacity: 0;
+    }
+}
+
+.active > .dropdown-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    z-index: 1;
+    opacity: 1;
+    & li {
+        border-radius: $radius-primary;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 18px;
+        color: $text-secondary;
+        margin: 5px 10px 5px 10px;
+        padding: 5px 10px;
+    }
+    :hover {
+        background-color: #2462c0;
+        cursor: pointer;
+    }
+}
+
+.active > .dropdown-input {
+    transition: 350ms ease-out;
+    width: 647px;
+    border-radius: 5px 5px 0 0;
+}
+
+.active > i {
+    transition: 350ms ease-out;
+    rotate: 180deg;
 }

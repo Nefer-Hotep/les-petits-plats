@@ -6,8 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Styles -->
         <link rel="stylesheet" href="./style/index.css" />
-        <!-- Scripts -->
-        <script defer src="./scripts/index.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
 
         <title>Les petits plats</title>
     </head>
@@ -39,275 +41,83 @@
                 </form>
             </section>
             <section>
-                <div class="dropdown">
-                    <div class="dropdown__btn">
+                <div class="dropdown-container">
+                    <div class="dropdown-btn" data-dropdown>
+                        <i class="fa-solid fa-chevron-down"></i>
                         <input
-                            class="dropdown__input"
+                            class="dropdown-input"
                             type="text"
-                            aria-expanded="false"
-                            placeholder="Ingredients"
+                            placeholder="Ingrédients"
+                            name="Ingrédients"
+                            data-dropdown-input
                         />
 
-                        <img src="./assets/arrow_down.svg" alt="" />
-                        <ul class="dropdown__menu">
-                            <li><a class="" href="#">Action</a></li>
-                            <li>
-                                <a class="" href="#">Another action</a>
-                            </li>
-                            <li>
-                                <a class="" href="#">Something else here</a>
-                            </li>
+                        <ul class="dropdown-menu">
+                            <li>Something else here</li>
+                            <li>Action</li>
+                            <li>Another action</li>
+                            <li>Action</li>
+                            <li>Something else here</li>
+                            <li>Another action</li>
+                            <li>Something else here</li>
+                            <li>Another action</li>
+                        </ul>
+                    </div>
+                    <div class="dropdown-btn" data-dropdown>
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <input
+                            class="dropdown-input"
+                            type="text"
+                            placeholder="Ingrédients"
+                            name="Ingrédients"
+                            data-dropdown-input
+                        />
+
+                        <ul class="dropdown-menu">
+                            <li>Something else here</li>
+                            <li>Action</li>
+                            <li>Another action</li>
+                            <li>Action</li>
+                            <li>Something else here</li>
+                            <li>Another action</li>
+                            <li>Something else here</li>
+                            <li>Another action</li>
+                        </ul>
+                    </div>
+                    <div class="dropdown-btn" data-dropdown>
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <input
+                            class="dropdown-input"
+                            type="text"
+                            placeholder="Ingrédients"
+                            name="Ingrédients"
+                            data-dropdown-input
+                        />
+
+                        <ul class="dropdown-menu">
+                            <li>Something else here</li>
+                            <li>Action</li>
+                            <li>Another action</li>
+                            <li>Action</li>
+                            <li>Something else here</li>
+                            <li>Another action</li>
+                            <li>Something else here</li>
+                            <li>Another action</li>
                         </ul>
                     </div>
                 </div>
-                <div class="grid">
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="card__content">
-                            <div class="card__header">
-                                <h2>Limonade de coco</h2>
-                                <div class="card__timer">
-                                    <img src="./assets/time.svg" alt="" />
-                                    <span>10 min</span>
-                                </div>
-                            </div>
-                            <div class="card__text">
-                                <ul class="card__recipe-list">
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                </ul>
-                                <p class="card__recipe-instruction">
-                                    Mettre les glaçons à votre goût dans le
-                                    blender, ajouter le lait, la crème de coco,
-                                    le jus de citrons et le sucre. Mixer jusqu'à
-                                    avoir la constitence désirée.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="card__content">
-                            <div class="card__header">
-                                <h2>Limonade de coco</h2>
-                                <div class="card__timer">
-                                    <img src="./assets/time.svg" alt="" />
-                                    <span>10 min</span>
-                                </div>
-                            </div>
-                            <div class="card__text">
-                                <ul class="card__recipe-list">
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                </ul>
-                                <p class="card__recipe-instruction">
-                                    Mettre les glaçons à votre goût dans le
-                                    blender, ajouter le lait, la crème de coco,
-                                    le jus de citrons et le sucre. Mixer jusqu'à
-                                    avoir la constitence désirée.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="card__content">
-                            <div class="card__header">
-                                <h2>Limonade de coco</h2>
-                                <div class="card__timer">
-                                    <img src="./assets/time.svg" alt="" />
-                                    <span>10 min</span>
-                                </div>
-                            </div>
-                            <div class="card__text">
-                                <ul class="card__recipe-list">
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                </ul>
-                                <p class="card__recipe-instruction">
-                                    Mettre les glaçons à votre goût dans le
-                                    blender, ajouter le lait, la crème de coco,
-                                    le jus de citrons et le sucre. Mixer jusqu'à
-                                    avoir la constitence désirée.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="card__content">
-                            <div class="card__header">
-                                <h2>Limonade de coco</h2>
-                                <div class="card__timer">
-                                    <img src="./assets/time.svg" alt="" />
-                                    <span>10 min</span>
-                                </div>
-                            </div>
-                            <div class="card__text">
-                                <ul class="card__recipe-list">
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                </ul>
-                                <p class="card__recipe-instruction">
-                                    Mettre les glaçons à votre goût dans le
-                                    blender, ajouter le lait, la crème de coco,
-                                    le jus de citrons et le sucre. Mixer jusqu'à
-                                    avoir la constitence désirée.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__image">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="card__content">
-                            <div class="card__header">
-                                <h2>Limonade de coco</h2>
-                                <div class="card__timer">
-                                    <img src="./assets/time.svg" alt="" />
-                                    <span>10 min</span>
-                                </div>
-                            </div>
-                            <div class="card__text">
-                                <ul class="card__recipe-list">
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                    <li>
-                                        <span class="card__recipe-list-name"
-                                            >Lait de coco :</span
-                                        >400ml
-                                    </li>
-                                </ul>
-                                <p class="card__recipe-instruction">
-                                    Mettre les glaçons à votre goût dans le
-                                    blender, ajouter le lait, la crème de coco,
-                                    le jus de citrons et le sucre. Mixer jusqu'à
-                                    avoir la constitence désirée.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="grid"></div>
             </section>
         </main>
+        <!-- Scripts -->
+        <script src="./js/Views/RecipesViews.js"></script>
+        <script src="./js/Model/Model.js"></script>
+        <script src="./js/Controller.js"></script>
+        <script>
+            //  Affiche les données du controller
+            let controller = new Controller();
+            controller.dropdownDisplay();
+            controller.recipeDisplay();
+        </script>
     </body>
 </html>
