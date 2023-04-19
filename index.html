@@ -10,6 +10,8 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         />
+        <!-- Scripts -->
+        <script defer src="./js/index.js"></script>
 
         <title>Les petits plats</title>
     </head>
@@ -35,6 +37,7 @@
                             id="search"
                             aria-label="Rechercher une recette"
                             autocomplete="off"
+                            data-search
                         />
                         <img src="./assets/search.svg" alt="" />
                     </div>
@@ -106,18 +109,40 @@
                         </ul>
                     </div>
                 </div>
-                <div class="grid"></div>
+                <div class="grid" data-recipe-card-container></div>
             </section>
+            <!-- Card Template -->
+            <template data-recipe-template>
+                <div class="card">
+                    <div class="card__image">
+                        <img src="" />
+                    </div>
+                    <div class="card__content">
+                        <div class="card__header">
+                            <h2 data-name></h2>
+                            <div class="card__timer">
+                                <img src="./assets/time.svg" />
+                                <span data-time></span>
+                            </div>
+                        </div>
+                        <div class="card__text">
+                            <ul
+                                class="card__recipe-list"
+                                data-list-container
+                            ></ul>
+                            <p
+                                class="card__recipe-instruction"
+                                data-description
+                            >
+                                Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template data-list-template>
+                <li class="card__recipe-list-name" data-ingredients></li>
+            </template>
         </main>
-        <!-- Scripts -->
-        <script src="./js/Views/RecipesViews.js"></script>
-        <script src="./js/Model/Model.js"></script>
-        <script src="./js/Controller.js"></script>
-        <script>
-            //  Affiche les données du controller
-            let controller = new Controller();
-            controller.dropdownDisplay();
-            controller.recipeDisplay();
-        </script>
     </body>
 </html>
