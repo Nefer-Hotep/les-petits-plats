@@ -111,6 +111,7 @@
                 </div>
                 <div class="grid" data-recipe-card-container></div>
             </section>
+
             <!-- Card Template -->
             <template data-recipe-template>
                 <div class="card">
@@ -141,7 +142,9 @@
                 </div>
             </template>
             <template data-list-template>
-                <li class="card__recipe-list-name" data-ingredients></li>
+                <li class="card__recipe-list-name" data-ingredient>
+                    <span data-quantity></span>
+                </li>
             </template>
         </main>
     </body>
