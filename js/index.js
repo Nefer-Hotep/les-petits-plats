@@ -1,4 +1,6 @@
-// Gère l'affichage des menu dropdown
+//
+// DROPDOWN
+//
 document.addEventListener('click', (e) => {
     const isDropdownInput = e.target.matches('[data-dropdown-input]');
 
@@ -16,13 +18,14 @@ document.addEventListener('click', (e) => {
     });
 });
 
+//
+// DISPLAY
+//
 const recipeCardTemplate = document.querySelector('[data-recipe-template]');
 const listTemplate = document.querySelector('[data-list-template]');
 const recipeCardContainer = document.querySelector(
     '[data-recipe-card-container]'
 );
-
-let recipes = [];
 
 fetch('../data/recipes.js')
     .then((res) => res.json())
@@ -41,11 +44,10 @@ fetch('../data/recipes.js')
                 const list = listTemplate.content.cloneNode(true);
                 const ingredientElement =
                     list.querySelector('[data-ingredient]');
-                // const quantityElement = list.querySelector('[data-quantity]');
+
                 ingredientElement.textContent =
                     ingredient.ingredient +
                     (!!ingredient.quantity ? ' : ' : ' ');
-                // quantityElement.textContent = ingredient.quantity;
 
                 if (ingredient.quantity) {
                     const quantityElement = document.createElement('span');
@@ -60,7 +62,6 @@ fetch('../data/recipes.js')
                     ingredientElement.appendChild(quantityElement);
                 }
 
-                // console.log(ingredientElement);
                 ingredientContainer.append(ingredientElement);
             });
 
@@ -73,38 +74,33 @@ fetch('../data/recipes.js')
             return {
                 name: recipe.name,
                 ingredients: recipe.ingredients,
+                description: recipe.description,
                 element: card,
             };
         });
     })
     .catch((err) => console.error('an error occurs ' + err));
 
+//
+// SEARCH
+//
 const searchInput = document.querySelector('[data-search]');
 
 searchInput.addEventListener('input', (e) => {
     const value = e.target.value.toLowerCase();
 
-    // if (value.length > 3) {
     recipes.forEach((recipe) => {
+        // Check the recipe array an return a boolean
         const isVisible =
             recipe.name.toLowerCase().includes(value) ||
-            recipe.ingredients.filter((obj) =>
-           { console.log(obj)
-                obj.ingredient.toLowerCase().includes(value)}
+            recipe.description.toLowerCase().includes(value) ||
+            recipe.ingredients.some((item) =>
+                item.ingredient.toLowerCase().includes(value)
             );
 
+        // console.log(recipe.description);
+
+        // Add or remove 'hide' from the element: card in the array
         recipe.element.classList.toggle('hide', !isVisible);
     });
-    // } else {
-    //     recipes.forEach((recipe) => {
-    //         const isVisible =
-    //             recipe.name.toLowerCase().includes(value) ||
-    //             recipe.ingredients.some((obj) => {
-    //                 console.log("else");
-    //                 obj.ingredient.toLowerCase().includes(value);
-    //             });
-
-    //         recipe.element.classList.toggle('hide', !isVisible);
-    //     });
-    // }
 });
