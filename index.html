@@ -10,8 +10,6 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         />
-        <!-- Scripts -->
-        <script defer src="./js/index.js"></script>
 
         <title>Les petits plats</title>
     </head>
@@ -53,60 +51,36 @@
                             placeholder="Ingrédients"
                             name="Ingrédients"
                             data-dropdown-input
+                            data-dropdown-type="ingredients"
                         />
 
-                        <ul class="dropdown-menu">
-                            <li>Something else here</li>
-                            <li>Action</li>
-                            <li>Another action</li>
-                            <li>Action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                        </ul>
+                        <ul class="dropdown-menu ingredients"></ul>
                     </div>
                     <div class="dropdown-btn" data-dropdown>
                         <i class="fa-solid fa-chevron-down"></i>
                         <input
-                            class="dropdown-input"
+                            class="dropdown-input appliance"
                             type="text"
-                            placeholder="Ingrédients"
-                            name="Ingrédients"
+                            placeholder="Appareils"
+                            name="Appareils"
                             data-dropdown-input
+                            data-dropdown-type="appliance"
                         />
 
-                        <ul class="dropdown-menu">
-                            <li>Something else here</li>
-                            <li>Action</li>
-                            <li>Another action</li>
-                            <li>Action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                        </ul>
+                        <ul class="dropdown-menu appliance"></ul>
                     </div>
                     <div class="dropdown-btn" data-dropdown>
                         <i class="fa-solid fa-chevron-down"></i>
                         <input
-                            class="dropdown-input"
+                            class="dropdown-input ustensils"
                             type="text"
-                            placeholder="Ingrédients"
-                            name="Ingrédients"
+                            placeholder="Ustensiles"
+                            name="Ustensiles"
                             data-dropdown-input
+                            data-dropdown-type="ustensils"
                         />
 
-                        <ul class="dropdown-menu">
-                            <li>Something else here</li>
-                            <li>Action</li>
-                            <li>Another action</li>
-                            <li>Action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                        </ul>
+                        <ul class="dropdown-menu ustensils"></ul>
                     </div>
                 </div>
                 <div class="grid" data-recipe-card-container></div>
@@ -134,9 +108,7 @@
                             <p
                                 class="card__recipe-instruction"
                                 data-description
-                            >
-                                Description
-                            </p>
+                            ></p>
                         </div>
                     </div>
                 </div>
@@ -148,4 +120,15 @@
             </template>
         </main>
     </body>
+    <!-- Scripts -->
+    <script src="./js/Model/RecipesModel.js"></script>
+    <script src="./js/service/Dropdown.js"></script>
+    <script src="./js/service/EventListener.js"></script>
+    <script src="./js/Views/CardsView.js"></script>
+    <script src="./js/Controller.js"></script>
+    <script>
+        let controller = new Controller();
+        controller.recipesDiplay();
+        controller.dropdownDisplay();
+    </script>
 </html>

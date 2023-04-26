@@ -1,36 +1,16 @@
-//
-// DROPDOWN
-//
-document.addEventListener('click', (e) => {
-    const isDropdownInput = e.target.matches('[data-dropdown-input]');
+// View : Créer la représentation visuel des cards
 
-    if (!isDropdownInput && e.target.closest('[data-dropdown]') != null) return;
+class CardsView {
+    renderCard(recipesData) {
+        const recipeCardTemplate = document.querySelector(
+            '[data-recipe-template]'
+        );
+        const listTemplate = document.querySelector('[data-list-template]');
+        const recipeCardContainer = document.querySelector(
+            '[data-recipe-card-container]'
+        );
 
-    let currentDropdown;
-    if (isDropdownInput) {
-        currentDropdown = e.target.closest('[data-dropdown]');
-        currentDropdown.classList.toggle('active');
-    }
-
-    document.querySelectorAll('[data-dropdown].active').forEach((dropdown) => {
-        if (dropdown === currentDropdown) return;
-        dropdown.classList.remove('active');
-    });
-});
-
-//
-// DISPLAY
-//
-const recipeCardTemplate = document.querySelector('[data-recipe-template]');
-const listTemplate = document.querySelector('[data-list-template]');
-const recipeCardContainer = document.querySelector(
-    '[data-recipe-card-container]'
-);
-
-fetch('../data/recipes.js')
-    .then((res) => res.json())
-    .then((data) => {
-        recipes = data.map((recipe) => {
+        const cardData = recipesData.map((recipe) => {
             const card = recipeCardTemplate.content.cloneNode(true).children[0];
             const name = card.querySelector('[data-name]');
             const time = card.querySelector('[data-time]');
@@ -78,29 +58,27 @@ fetch('../data/recipes.js')
                 element: card,
             };
         });
-    })
-    .catch((err) => console.error('an error occurs ' + err));
 
-//
-// SEARCH
-//
-const searchInput = document.querySelector('[data-search]');
+        //
+        // SEARCH BAR
+        //
+        const searchInput = document.querySelector('[data-search]');
 
-searchInput.addEventListener('input', (e) => {
-    const value = e.target.value.toLowerCase();
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value.toLowerCase();
 
-    recipes.forEach((recipe) => {
-        // Check the recipe array an return a boolean
-        const isVisible =
-            recipe.name.toLowerCase().includes(value) ||
-            recipe.description.toLowerCase().includes(value) ||
-            recipe.ingredients.some((item) =>
-                item.ingredient.toLowerCase().includes(value)
-            );
+            cardData.forEach((recipe) => {
+                // Check the recipe array return a boolean
+                const isVisible =
+                    recipe.name.toLowerCase().includes(value) ||
+                    recipe.description.toLowerCase().includes(value) ||
+                    recipe.ingredients.some((item) =>
+                        item.ingredient.toLowerCase().includes(value)
+                    );
 
-        // console.log(recipe.description);
-
-        // Add or remove 'hide' from the element: card in the array
-        recipe.element.classList.toggle('hide', !isVisible);
-    });
-});
+                // Add or remove 'hide' from the element: card in the array
+                recipe.element.classList.toggle('hide', !isVisible);
+            });
+        });
+    }
+}
