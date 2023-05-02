@@ -1,7 +1,7 @@
-// View : Créer la représentation visuel des cards
-
 class CardsView {
+    // Method to render cards based on the recipes data
     renderCard(recipesData) {
+        // Select necessary DOM elements
         const recipeCardTemplate = document.querySelector(
             '[data-recipe-template]'
         );
@@ -10,8 +10,12 @@ class CardsView {
             '[data-recipe-card-container]'
         );
 
+        // Map each recipe data to a card element and return an array with card data
         const cardData = recipesData.map((recipe) => {
+            // Clone the card template
             const card = recipeCardTemplate.content.cloneNode(true).children[0];
+
+            // Select card elements
             const name = card.querySelector('[data-name]');
             const time = card.querySelector('[data-time]');
             const description = card.querySelector('[data-description]');
@@ -21,14 +25,17 @@ class CardsView {
 
             // Display ingredients inside the card
             recipe.ingredients.forEach((ingredient) => {
+                // Clone the list template
                 const list = listTemplate.content.cloneNode(true);
                 const ingredientElement =
                     list.querySelector('[data-ingredient]');
 
+                // Set ingredient text
                 ingredientElement.textContent =
                     ingredient.ingredient +
                     (!!ingredient.quantity ? ' : ' : ' ');
 
+                // Add quantity and unit, if available
                 if (ingredient.quantity) {
                     const quantityElement = document.createElement('span');
                     quantityElement.setAttribute(
@@ -42,15 +49,19 @@ class CardsView {
                     ingredientElement.appendChild(quantityElement);
                 }
 
+                // Append the ingredient element to the ingredient container
                 ingredientContainer.append(ingredientElement);
             });
 
+            // Set card content
             name.textContent = recipe.name;
             time.textContent = recipe.time + ' min';
             description.textContent = recipe.description;
 
+            // Append the card to the recipe card container
             recipeCardContainer.append(card);
 
+            // Return an object containing recipe data and the card element
             return {
                 name: recipe.name,
                 ingredients: recipe.ingredients,
@@ -59,26 +70,9 @@ class CardsView {
             };
         });
 
-        //
-        // SEARCH BAR
-        //
-        const searchInput = document.querySelector('[data-search]');
+        // Initialize search functionality
+        const search = new RecipeSearch(cardData);
 
-        searchInput.addEventListener('input', (e) => {
-            const value = e.target.value.toLowerCase();
-
-            cardData.forEach((recipe) => {
-                // Check the recipe array return a boolean
-                const isVisible =
-                    recipe.name.toLowerCase().includes(value) ||
-                    recipe.description.toLowerCase().includes(value) ||
-                    recipe.ingredients.some((item) =>
-                        item.ingredient.toLowerCase().includes(value)
-                    );
-
-                // Add or remove 'hide' from the element: card in the array
-                recipe.element.classList.toggle('hide', !isVisible);
-            });
-        });
+        return cardData;
     }
 }

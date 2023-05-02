@@ -30,7 +30,7 @@ class Dropdown {
 
         items.forEach((item) => {
             const li = document.createElement('li');
-            li.setAttribute('data-type', item)
+            li.setAttribute('data-tag', item)
             li.textContent = item;
             dropdownMenu.appendChild(li);
         });
@@ -44,7 +44,7 @@ class Dropdown {
 
         items.forEach((item) => {
             const li = document.createElement('li');
-            li.setAttribute('data-type', item);
+            li.setAttribute('data-tag', item);
             li.textContent = item;
             dropdownMenu.appendChild(li);
         });

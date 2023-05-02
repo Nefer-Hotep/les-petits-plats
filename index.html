@@ -30,7 +30,6 @@
                     <div class="search-input-wrapper">
                         <input
                             type="text"
-                            class="f"
                             placeholder="Rechercher un recette"
                             id="search"
                             aria-label="Rechercher une recette"
@@ -42,6 +41,7 @@
                 </form>
             </section>
             <section>
+                <div class="tag-container" data-container-tag></div>
                 <div class="dropdown-container">
                     <div class="dropdown-btn" data-dropdown>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -113,22 +113,33 @@
                     </div>
                 </div>
             </template>
+            <!-- List Template -->
             <template data-list-template>
                 <li class="card__recipe-list-name" data-ingredient>
                     <span data-quantity></span>
                 </li>
             </template>
+            <!-- Tag Template -->
+            <template data-template-tag>
+                <div class="tag-box" >
+                    <span data-selected-tag>Test tag </span>
+                    <img src="./assets/tag_close.svg" alt="" data-close-tag/>
+                </div>
+            </template>
         </main>
     </body>
     <!-- Scripts -->
     <script src="./js/Model/RecipesModel.js"></script>
-    <script src="./js/service/Dropdown.js"></script>
     <script src="./js/service/EventListener.js"></script>
+    <script src="./js/service/Dropdown.js"></script>
     <script src="./js/Views/CardsView.js"></script>
+    <script src="./js/Views/TagsView.js"></script>
     <script src="./js/Controller.js"></script>
+    <script src="./js/service/RecipeSearch.js"></script>
     <script>
         let controller = new Controller();
-        controller.recipesDiplay();
+        controller.recipesDisplay();
         controller.dropdownDisplay();
+        controller.tagDisplay();
     </script>
 </html>
