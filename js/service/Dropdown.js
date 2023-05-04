@@ -39,16 +39,17 @@ class Dropdown {
     displayDropdownMenu(dropdownMenu) {
         // Get the unique items for the dropdown menu.
         const items = this.getDropdownItems();
-        // Clear the existing content of the dropdown menu.
-        dropdownMenu.innerHTML = '';
 
-        // Append each unique item as a list item to the dropdown menu.
-        items.forEach((item) => {
-            const li = document.createElement('li');
-            li.setAttribute('data-tag', item);
-            li.textContent = item;
-            dropdownMenu.appendChild(li);
-        });
+        // Check if the dropdown is empty
+        if (dropdownMenu.innerHTML === '') {
+            // Append each unique item as a list item to the dropdown menu.
+            items.forEach((item) => {
+                const li = document.createElement('li');
+                li.setAttribute('data-tag', item);
+                li.textContent = item.toLowerCase();
+                dropdownMenu.appendChild(li);
+            });
+        }
     }
 
     // Define a method to update the dropdown menu with filtered items based on the input value.
@@ -65,8 +66,49 @@ class Dropdown {
         items.forEach((item) => {
             const li = document.createElement('li');
             li.setAttribute('data-tag', item);
-            li.textContent = item;
+            li.textContent = item.toLowerCase();
             dropdownMenu.appendChild(li);
         });
+    }
+
+    // Method to update the dropdown menu with the matched items
+    displayUpdatedDropdownMenu(dropdownType, items) {
+        // Get the dropdown menu with the specified dropdownType
+        const dropdownMenu = document.querySelector(
+            `.dropdown-menu.${dropdownType}`
+        );
+
+        // Clear the existing items in the dropdown menu
+        dropdownMenu.innerHTML = '';
+
+        // Add new items to the dropdown menu
+        items.forEach((item) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            listItem.setAttribute('data-tag', item);
+            dropdownMenu.appendChild(listItem);
+        });
+    }
+
+    updateDropdownsWithFilteredRecipes(filteredRecipes) {
+        // Get the unique ingredients, appliances, and utensils from the filtered recipes
+        const ingredients = new Set();
+        const appliances = new Set();
+        const utensils = new Set();
+
+        filteredRecipes.forEach((recipe) => {
+            recipe.ingredients.forEach((ingredient) =>
+                ingredients.add(ingredient.ingredient.toLowerCase())
+            );
+            appliances.add(recipe.appliance.toLowerCase());
+            recipe.ustensils.forEach((utensil) =>
+                utensils.add(utensil.toLowerCase())
+            );
+        });
+
+        // Update the dropdown menus with the unique items
+        this.displayUpdatedDropdownMenu('ingredients', Array.from(ingredients));
+        this.displayUpdatedDropdownMenu('appliance', Array.from(appliances));
+        this.displayUpdatedDropdownMenu('ustensils', Array.from(utensils));
     }
 }

@@ -6,31 +6,21 @@ class Controller {
 
     // Handles the display and interactions of tags
     async tagDisplay() {
-        let eventListeners = new EventListener();
-        let tagsView = new TagsView();
-        let recipesModel = new RecipesModel();
-
-        let recipesData = await recipesModel.getRecipes(); // Fetch the recipes data
+        const eventListeners = new EventListener();
+        const tagsView = new TagsView();
 
         //
         // CREATE TAG
         // Add an event listener to create a tag when an item in the dropdown menu is clicked
         eventListeners.addGlobalEventListener('click', '[data-tag]', (e) => {
             const currentTag = e.target.dataset.tag;
-
             const currentDropdown = e.target.closest('[data-dropdown]');
-            const dropdownMenu =
-                currentDropdown.querySelector('.dropdown-menu');
             const dropdownType = currentDropdown.querySelector(
                 '[data-dropdown-type]'
             ).dataset.dropdownType;
 
             // Update filters in the RecipeSearch class
             this.recipeSearch.updateFilters(currentTag, dropdownType);
-
-            // Update filters in the Dropdown class
-            // const dropdown = new Dropdown(dropdownType, recipesData);
-            // dropdown.updateDropdownMenuWithInputValue(dropdownMenu, currentTag);
 
             tagsView.renderTag(currentTag, dropdownType); // Render the tag on the page
         });
@@ -110,7 +100,9 @@ class Controller {
         eventListeners.addGlobalEventListener('click', '*', (e) => {
             if (
                 e.target.matches('[data-dropdown-input]') ||
-                e.target.matches('[data-search]')
+                e.target.matches('[data-search]') ||
+                e.target.matches('[data-tag]') ||
+                e.target.matches('[data-close-tag]')
             )
                 return;
 

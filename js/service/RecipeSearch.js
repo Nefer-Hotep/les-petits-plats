@@ -9,7 +9,7 @@ class RecipeSearch {
             appliance: [],
         };
         this.initSearch();
-        this.initDropdowns();
+        this.initDropdownsSearchCards();
     }
 
     // Initialize the search input event listener
@@ -18,9 +18,9 @@ class RecipeSearch {
         event.addGlobalEventListener('input', '[data-search]', (e) => {
             const value = e.target.value.toLowerCase();
             // Check the length of the search value
-            if (value.length > 3) {
+            if (value.length > 2) {
                 this.searchAndFilterCards(value);
-            } else if (value.length < 3) {
+            } else if (value.length < 2) {
                 // Display all the recipes when the search value is empty
                 this.searchAndFilterCards('');
             }
@@ -28,7 +28,7 @@ class RecipeSearch {
     }
 
     // Initialize the dropdown inputs event listeners
-    initDropdowns() {
+    initDropdownsSearchCards() {
         // Select all dropdown inputs with a "data-dropdown-input" attribute
         const dropdownInputs = document.querySelectorAll(
             '[data-dropdown-input]'
@@ -49,6 +49,13 @@ class RecipeSearch {
     }
 
     searchAndFilterCards(searchValue) {
+        const dropdown = new Dropdown();
+        // Create an array to store the filtered recipes
+        const filteredRecipes = [];
+        let hiddenCards = 0;
+
+        const totalCards = this.cardData.length;
+
         // Iterate over each recipe in the cardData array
         this.cardData.forEach((recipe) => {
             // Check if the recipe matches the search value
@@ -78,14 +85,11 @@ class RecipeSearch {
                         .includes(appliance.toLowerCase())
             );
 
-
-            // Check if the recipe matches all the utensils filters
+            // Check if the recipe matches all the ustensils filters
             const matchesUstensilsFilter = this.filters.ustensils.every(
                 (ustensil) =>
                     recipe.ustensils.some((item) =>
-                        item
-                            .toLowerCase()
-                            .includes(ustensil.toLowerCase())
+                        item.toLowerCase().includes(ustensil.toLowerCase())
                     )
             );
 
@@ -96,10 +100,34 @@ class RecipeSearch {
                 matchesApplianceFilter &&
                 matchesUstensilsFilter;
 
+            // If the recipe is visible, add it to the filteredRecipes array
+            if (isVisible) {
+                filteredRecipes.push(recipe);
+                hiddenCards++;
+            }
+
             // Toggle the "hide" class on the recipe element based on its visibility
             recipe.element.classList.toggle('hide', !isVisible);
+
+            // Update the dropdown menu with the filtered recipes
+            dropdown.updateDropdownsWithFilteredRecipes(filteredRecipes);
         });
+        // Display an error message if no cards are visible
+
+        const errorTemplate = document.querySelector('[data-template-error]');
+        const cardContainer = document.querySelector(
+            '[data-recipe-card-container]'
+        );
+
+        if (hiddenCards === 0) {
+            console.log(cardContainer);
+            const errorMessage = errorTemplate.content.cloneNode(true);
+            cardContainer.append(errorMessage)
+        } else if (hiddenCards > 0) {
+            console.log(' hide ');
+        }
     }
+
 
     // Method to update filters
     updateFilters(tagValue, dropdownType) {
