@@ -5,30 +5,53 @@ class Controller {
     }
 
     // Handles the display and interactions of tags
-    tagDisplay() {
-        const eventListeners = new EventListener();
-        const tagsView = new TagsView();
+    async tagDisplay() {
+        let eventListeners = new EventListener();
+        let tagsView = new TagsView();
+        let recipesModel = new RecipesModel();
 
+        let recipesData = await recipesModel.getRecipes(); // Fetch the recipes data
+
+        //
+        // CREATE TAG
         // Add an event listener to create a tag when an item in the dropdown menu is clicked
         eventListeners.addGlobalEventListener('click', '[data-tag]', (e) => {
-            let currentTag = e.target.dataset.tag;
-            tagsView.renderTag(currentTag); // Render the tag on the page
+            const currentTag = e.target.dataset.tag;
+
+            const currentDropdown = e.target.closest('[data-dropdown]');
+            const dropdownMenu =
+                currentDropdown.querySelector('.dropdown-menu');
+            const dropdownType = currentDropdown.querySelector(
+                '[data-dropdown-type]'
+            ).dataset.dropdownType;
+
             // Update filters in the RecipeSearch class
-            this.recipeSearch.updateFilters(currentTag);
+            this.recipeSearch.updateFilters(currentTag, dropdownType);
+
+            // Update filters in the Dropdown class
+            // const dropdown = new Dropdown(dropdownType, recipesData);
+            // dropdown.updateDropdownMenuWithInputValue(dropdownMenu, currentTag);
+
+            tagsView.renderTag(currentTag, dropdownType); // Render the tag on the page
         });
 
+        //
+        // REMOVE TAG
         // Add an event listener to remove a tag when the close button on a tag is clicked
         eventListeners.addGlobalEventListener(
             'click',
             '[data-close-tag]',
             (e) => {
-                let tagElement = e.target.closest('.tag-box');
-                let tagName = tagElement
+                const tagElement = e.target.closest('.tag-box');
+                const tagName = tagElement
                     .querySelector('[data-selected-tag]')
                     .textContent.trim();
+                const tagType = tagElement.querySelector('[data-dropdown-type]')
+                    .dataset.dropdownType;
+
                 tagElement.remove(); // Remove the tag from the view
                 // Remove the filter from the RecipeSearch class
-                this.recipeSearch.removeFilter(tagName);
+                this.recipeSearch.removeFilter(tagName, tagType);
             }
         );
     }
@@ -40,6 +63,8 @@ class Controller {
 
         const recipesData = await recipesModel.getRecipes(); // Fetch the recipes data
 
+        //
+        // OPEN DROPDOWN
         // Add an event listener to toggle the visibility of the dropdown menu when the input is clicked
         eventListeners.addGlobalEventListener(
             'click',
@@ -53,17 +78,18 @@ class Controller {
 
                 const dropdownMenu =
                     currentDropdown.querySelector('.dropdown-menu');
-                dropdown.updateDropdownMenu(dropdownMenu); // Update the contents of the dropdown menu
+                dropdown.displayDropdownMenu(dropdownMenu); // Update the contents of the dropdown menu
             }
         );
 
+        //
+        // FILTER MENU ON DROPDOWN INPUT CHANGE
         // Add an event listener to filter the items in the dropdown menu when the input changes
         eventListeners.addGlobalEventListener(
             'input',
             '[data-dropdown-input]',
             (e) => {
                 const input = e.target;
-                const filterValue = input.value;
                 const currentDropdown = input.closest('[data-dropdown]');
 
                 const dropdownType = input.dataset.dropdownType;
@@ -71,13 +97,15 @@ class Controller {
 
                 const dropdownMenu =
                     currentDropdown.querySelector('.dropdown-menu');
-                dropdown.updateDropdownMenuWithFilter(
+                dropdown.updateDropdownMenuWithInputValue(
                     dropdownMenu,
-                    filterValue
+                    input.value
                 );
             }
         );
 
+        //
+        // CLOSE DROPDOWN
         // Add an event listener to close all active dropdown menus when a click occurs outside the menus
         eventListeners.addGlobalEventListener('click', '*', (e) => {
             if (
@@ -86,7 +114,7 @@ class Controller {
             )
                 return;
 
-            let currentDropdown = e.target.closest('[data-dropdown]');
+            const currentDropdown = e.target.closest('[data-dropdown]');
             if (currentDropdown) return;
 
             document

@@ -45,22 +45,31 @@
 }
 
 .appliance {
-    background-color: $color-device;
+    background-color: $color-appliance;
     > li:hover {
-        background-color: $color-device-secondary;
+        background-color: $color-appliance-secondary;
+    }
+    img[data-dropdown-type='appliance']:hover {
+        background-color: $color-appliance-secondary;
     }
 }
 
 .ustensils {
-    background-color: $color-utensil;
+    background-color: $color-ustensils;
     > li:hover {
-        background-color: $color-utensil-secondary;
+        background-color: $color-ustensils-secondary;
+    }
+    img[data-dropdown-type='ustensils']:hover {
+        background-color: $color-ustensils-secondary;
     }
 }
 
 .ingredients {
     background-color: $color-ingredients;
     > li:hover {
+        background-color: $color-ingredients-secondary;
+    }
+    img[data-dropdown-type="ingredients"]:hover {
         background-color: $color-ingredients-secondary;
     }
 }
@@ -76,8 +85,8 @@
         margin-right: 10px;
         padding: 10px;
         color: $text-secondary;
-        background-color: $color-ingredients;
         img {
+            border-radius: 50%;
             vertical-align: middle;
             line-height: 50%;
             cursor: pointer;

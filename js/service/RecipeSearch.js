@@ -5,12 +5,10 @@ class RecipeSearch {
         // Initialize the filters object with empty arrays for each filter type
         this.filters = {
             ingredients: [],
-            utensils: [],
-            devices: [],
+            ustensils: [],
+            appliance: [],
         };
-        // Initialize the search functionality
         this.initSearch();
-        // Initialize the dropdown inputs
         this.initDropdowns();
     }
 
@@ -38,7 +36,7 @@ class RecipeSearch {
         // Add an "input" event listener to each dropdown input
         dropdownInputs.forEach((input) => {
             input.addEventListener('input', (e) => {
-                // Get the filter type (ingredients, utensils, devices) from the data-dropdown-type attribute
+                // Get the filter type (ingredients, ustensils, appliance) from the data-dropdown-type attribute
                 const type = e.target.dataset.dropdownType;
                 // Get the filter value from the input value and convert it to lowercase
                 const value = e.target.value.toLowerCase();
@@ -72,9 +70,31 @@ class RecipeSearch {
                             .includes(ingredient.toLowerCase())
                     )
             );
+            // Check if the recipe matches all the appliance filters
+            const matchesApplianceFilter = this.filters.appliance.every(
+                (appliance) =>
+                    recipe.appliance
+                        .toLowerCase()
+                        .includes(appliance.toLowerCase())
+            );
 
-            // Determine if the recipe should be visible based on the search value and ingredient filters
-            const isVisible = matchesSearch && matchesIngredientsFilter;
+
+            // Check if the recipe matches all the utensils filters
+            const matchesUstensilsFilter = this.filters.ustensils.every(
+                (ustensil) =>
+                    recipe.ustensils.some((item) =>
+                        item
+                            .toLowerCase()
+                            .includes(ustensil.toLowerCase())
+                    )
+            );
+
+            // Determine if the recipe should be visible based on the search value and filters
+            const isVisible =
+                matchesSearch &&
+                matchesIngredientsFilter &&
+                matchesApplianceFilter &&
+                matchesUstensilsFilter;
 
             // Toggle the "hide" class on the recipe element based on its visibility
             recipe.element.classList.toggle('hide', !isVisible);
@@ -82,21 +102,19 @@ class RecipeSearch {
     }
 
     // Method to update filters
-    updateFilters(tagValue) {
-        // You can choose the filter type based on the tagValue or any other criteria
-        const filterType = 'utensils'; // or "utensils" or "devices"
+    updateFilters(tagValue, dropdownType) {
+        // Specify the type of filter to remove (e.g., "ingredients", "ustensils", or "appliance")
         // Add the tagValue to the filters array for the specified filter type
-        this.filters[filterType].push(tagValue.toLowerCase());
+        this.filters[dropdownType].push(tagValue.toLowerCase());
         // Re-filter the cards based on the updated filters
         this.searchAndFilterCards('');
     }
 
     // Method to remove a filter
-    removeFilter(tagValue) {
-        // Specify the type of filter to remove (e.g., "ingredients", "utensils", or "devices")
-        const filterType = 'ingredients'; // or "utensils" or "devices"
+    removeFilter(tagValue, dropdownType) {
+        // Specify the type of filter to remove (e.g., "ingredients", "ustensils", or "appliance")
         // Create a new array that includes all the filters except the one with the tagValue value
-        this.filters[filterType] = this.filters[filterType].filter(
+        this.filters[dropdownType] = this.filters[dropdownType].filter(
             (filter) => filter !== tagValue.toLowerCase()
         );
         // Re-filter the cards based on the updated filters

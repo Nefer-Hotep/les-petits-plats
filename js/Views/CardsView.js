@@ -66,6 +66,8 @@ class CardsView {
                 name: recipe.name,
                 ingredients: recipe.ingredients,
                 description: recipe.description,
+                appliance: recipe.appliance,
+                ustensils: recipe.ustensils,
                 element: card,
             };
         });
