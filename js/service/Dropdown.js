@@ -10,25 +10,44 @@ class Dropdown {
 
     // Define a method to get the unique items for the dropdown menu based on the type.
     getDropdownItems() {
+        // Declare a variable to store the unique items.
         let items;
 
-        // If the dropdown type is 'ingredients', extract unique ingredient names.
-        if (this.dropdownType === 'ingredients') {
-            items = this.recipesData
-                .flatMap((recipe) =>
-                    // Map each ingredient object to its name.
-                    recipe[this.dropdownType].map(
-                        (ingredient) => ingredient.ingredient
+        // Use a switch statement to handle different dropdown types.
+        switch (this.dropdownType) {
+            // If the dropdown type is 'ingredients':
+            case 'ingredients':
+                items = this.recipesData
+                    // Flatten the nested arrays of ingredients and map each ingredient object to its name in lowercase.
+                    .flatMap((recipe) =>
+                        recipe[this.dropdownType].map((ingredient) =>
+                            ingredient.ingredient.toLowerCase()
+                        )
                     )
-                )
-                // Filter the items array to keep only unique items.
-                .filter((item, index, arr) => arr.indexOf(item) === index);
-        } else {
-            // If the dropdown type is not 'ingredients', extract unique items directly.
-            items = this.recipesData
-                .flatMap((recipe) => recipe[this.dropdownType])
-                // Filter the items array to keep only unique items.
-                .filter((item, index, arr) => arr.indexOf(item) === index);
+                    // Filter the items array to keep only unique items.
+                    .filter((item, index, arr) => arr.indexOf(item) === index);
+                break;
+            // If the dropdown type is 'appliance':
+            case 'appliance':
+                items = this.recipesData
+                    // Flatten the nested arrays of appliances.
+                    .flatMap((recipe) => recipe[this.dropdownType])
+                    // Filter the items array to keep only unique items.
+                    .filter((item, index, arr) => arr.indexOf(item) === index);
+                break;
+            // If the dropdown type is 'ustensils':
+            case 'ustensils':
+                items = this.recipesData
+                    // Flatten the nested arrays of utensils.
+                    .flatMap((recipe) => recipe[this.dropdownType])
+                    // Map each utensil to its lowercase version.
+                    .map((utensil) => utensil.toLowerCase())
+                    // Filter the items array to keep only unique items.
+                    .filter((item, index, arr) => arr.indexOf(item) === index);
+                break;
+            // If the dropdown type is not one of the expected values, log an error.
+            default:
+                console.error('Bad dropdownType');
         }
 
         // Return the unique items array.
