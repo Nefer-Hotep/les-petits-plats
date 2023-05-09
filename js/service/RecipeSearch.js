@@ -52,9 +52,6 @@ class RecipeSearch {
         const dropdown = new Dropdown();
         // Create an array to store the filtered recipes
         const filteredRecipes = [];
-        let hiddenCards = 0;
-
-        const totalCards = this.cardData.length;
 
         // Iterate over each recipe in the cardData array
         this.cardData.forEach((recipe) => {
@@ -103,31 +100,46 @@ class RecipeSearch {
             // If the recipe is visible, add it to the filteredRecipes array
             if (isVisible) {
                 filteredRecipes.push(recipe);
-                hiddenCards++;
             }
 
             // Toggle the "hide" class on the recipe element based on its visibility
             recipe.element.classList.toggle('hide', !isVisible);
 
-            // Update the dropdown menu with the filtered recipes
-            dropdown.updateDropdownsWithFilteredRecipes(filteredRecipes);
         });
-        // Display an error message if no cards are visible
+        // Update the dropdown menu with the filtered recipes
+        dropdown.updateDropdownsWithFilteredRecipes(filteredRecipes);
+        
+        this.initDisplayError();
+    }
 
+    initDisplayError() {
+        // Display an error message if no cards are visible
         const errorTemplate = document.querySelector('[data-template-error]');
         const cardContainer = document.querySelector(
             '[data-recipe-card-container]'
         );
+        // Check if an error message is already displayed
+        const errorMessage = cardContainer.querySelector(
+            '[data-error-message]'
+        );
 
-        if (hiddenCards === 0) {
-            console.log(cardContainer);
-            const errorMessage = errorTemplate.content.cloneNode(true);
-            cardContainer.append(errorMessage)
-        } else if (hiddenCards > 0) {
-            console.log(' hide ');
+        // Count the number of elements in the object
+        let hiddenCards = document.getElementsByClassName('hide').length;
+
+        if (hiddenCards === this.cardData.length) {
+            // If there is no error message, create and display one
+            if (!errorMessage) {
+                const newErrorMessage = errorTemplate.content.cloneNode(true);
+                newErrorMessage.querySelector('[data-error-message]');
+                cardContainer.append(newErrorMessage);
+            }
+        } else {
+            if (errorMessage) {
+                // If there is an error message, remove it
+                errorMessage.remove();
+            }
         }
     }
-
 
     // Method to update filters
     updateFilters(tagValue, dropdownType) {

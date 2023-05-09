@@ -72,9 +72,6 @@ class CardsView {
             };
         });
 
-        // Initialize search functionality
-        const search = new RecipeSearch(cardData);
-
         return cardData;
     }
 }

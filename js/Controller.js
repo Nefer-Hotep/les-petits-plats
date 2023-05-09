@@ -13,16 +13,16 @@ class Controller {
         // CREATE TAG
         // Add an event listener to create a tag when an item in the dropdown menu is clicked
         eventListeners.addGlobalEventListener('click', '[data-tag]', (e) => {
-            const currentTag = e.target.dataset.tag;
+            const selectedTag = e.target.dataset.tag;
             const currentDropdown = e.target.closest('[data-dropdown]');
             const dropdownType = currentDropdown.querySelector(
                 '[data-dropdown-type]'
             ).dataset.dropdownType;
 
             // Update filters in the RecipeSearch class
-            this.recipeSearch.updateFilters(currentTag, dropdownType);
-
-            tagsView.renderTag(currentTag, dropdownType); // Render the tag on the page
+            this.recipeSearch.updateFilters(selectedTag, dropdownType);
+            
+            tagsView.renderTag(selectedTag, dropdownType); // Render the tag on the page
         });
 
         //

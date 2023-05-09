@@ -92,23 +92,34 @@ class Dropdown {
 
     updateDropdownsWithFilteredRecipes(filteredRecipes) {
         // Get the unique ingredients, appliances, and utensils from the filtered recipes
-        const ingredients = new Set();
-        const appliances = new Set();
-        const utensils = new Set();
+        let ingredients = [];
+        let appliances = [];
+        let ustensils = [];
 
         filteredRecipes.forEach((recipe) => {
-            recipe.ingredients.forEach((ingredient) =>
-                ingredients.add(ingredient.ingredient.toLowerCase())
-            );
-            appliances.add(recipe.appliance.toLowerCase());
-            recipe.ustensils.forEach((utensil) =>
-                utensils.add(utensil.toLowerCase())
-            );
+            // Ingredients
+            recipe.ingredients.forEach((ingredient) => {
+                if (
+                    !ingredients.includes(ingredient.ingredient.toLowerCase())
+                ) {
+                    ingredients.push(ingredient.ingredient.toLowerCase());
+                }
+            });
+            // Appliances
+            if (!appliances.includes(recipe.appliance.toLowerCase())) {
+                appliances.push(recipe.appliance.toLowerCase());
+            }
+            // Ustensils
+            recipe.ustensils.forEach((ustensil) => {
+                if (!ustensils.includes(ustensil.toLowerCase())) {
+                    ustensils.push(ustensil.toLowerCase());
+                }
+            });
         });
 
         // Update the dropdown menus with the unique items
-        this.displayUpdatedDropdownMenu('ingredients', Array.from(ingredients));
-        this.displayUpdatedDropdownMenu('appliance', Array.from(appliances));
-        this.displayUpdatedDropdownMenu('ustensils', Array.from(utensils));
+        this.displayUpdatedDropdownMenu('ingredients', ingredients);
+        this.displayUpdatedDropdownMenu('appliance', appliances);
+        this.displayUpdatedDropdownMenu('ustensils', ustensils);
     }
 }
