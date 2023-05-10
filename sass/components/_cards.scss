@@ -51,6 +51,9 @@
     &__recipe-list {
         font-weight: 700;
         width: 50%;
+        &-quantity{
+            font-weight: 400;
+        }
     }
 
     &__recipe-instruction {
@@ -60,4 +63,8 @@
         overflow: hidden;
         width: 50%;
     }
+}
+
+.hide {
+    display: none;
 }

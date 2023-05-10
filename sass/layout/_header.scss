@@ -1,6 +1,7 @@
 .header {
     @extend %flex-center;
     flex-direction: column;
+    margin-top: 42px;
 }
 
 .logo {

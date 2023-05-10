@@ -9,6 +9,7 @@
 .dropdown {
     &-btn {
         position: relative;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 
         i {
             position: absolute;
@@ -19,6 +20,7 @@
     }
 
     &-input {
+        // position: relative;
         color: $text-secondary;
         border: none;
         border-radius: $radius-primary;
@@ -26,6 +28,7 @@
         width: 170px;
         height: 69px;
         padding-left: 20px;
+        z-index: 2;
 
         &::placeholder {
             color: $text-secondary;
@@ -40,40 +43,102 @@
         position: absolute;
         background-color: $color-ingredients;
         font-weight: 400;
+        max-height: 397px;
+        overflow: auto;
+        display: none;
         opacity: 0;
+        &::-webkit-scrollbar {
+            width: 0.5vw;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $text-secondary;
+            border-radius: $radius-primary;
+        }
     }
 }
 
-.active > .dropdown-menu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    width: 100%;
-    border-radius: 0 0 5px 5px;
-    z-index: 1;
-    opacity: 1;
-    & li {
-        border-radius: $radius-primary;
+.active {
+    > .dropdown-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+        z-index: 1;
+        opacity: 1;
+        & li {
+            border-radius: $radius-primary;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 18px;
+            color: $text-secondary;
+            margin: 5px 10px 5px 10px;
+            padding: 5px 10px;
+        }
+        :hover {
+            cursor: pointer;
+        }
+    }
+    
+    > .dropdown-input {
+        transition: 350ms ease-out;
+        width: 647px;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    > i {
+        transition: 350ms ease-out;
+        rotate: 180deg;
+    }
+}
+
+.appliance {
+    background-color: $color-appliance;
+    > li:hover {
+        background-color: $color-appliance-secondary;
+    }
+    img[data-dropdown-type='appliance']:hover {
+        background-color: $color-appliance-secondary;
+    }
+}
+
+.ustensils {
+    background-color: $color-ustensils;
+    > li:hover {
+        background-color: $color-ustensils-secondary;
+    }
+    img[data-dropdown-type='ustensils']:hover {
+        background-color: $color-ustensils-secondary;
+    }
+}
+
+.ingredients {
+    background-color: $color-ingredients;
+    > li:hover {
+        background-color: $color-ingredients-secondary;
+    }
+    img[data-dropdown-type='ingredients']:hover {
+        background-color: $color-ingredients-secondary;
+    }
+}
+
+.tag {
+    &-container {
         display: flex;
-        flex-wrap: wrap;
-        font-size: 18px;
+        margin-top: 10px;
+    }
+    &-box {
+        border-radius: $radius-primary;
+        font-size: 14px;
+        font-weight: 700;
+        margin-right: 10px;
+        padding: 10px;
         color: $text-secondary;
-        margin: 5px 10px 5px 10px;
-        padding: 5px 10px;
+        img {
+            border-radius: 50%;
+            vertical-align: middle;
+            line-height: 50%;
+            cursor: pointer;
+        }
     }
-    :hover {
-        background-color: #2462c0;
-        cursor: pointer;
-    }
-}
-
-.active > .dropdown-input {
-    transition: 350ms ease-out;
-    width: 647px;
-    border-radius: 5px 5px 0 0;
-}
-
-.active > i {
-    transition: 350ms ease-out;
-    rotate: 180deg;
 }

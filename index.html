@@ -30,17 +30,18 @@
                     <div class="search-input-wrapper">
                         <input
                             type="text"
-                            class="f"
                             placeholder="Rechercher un recette"
                             id="search"
                             aria-label="Rechercher une recette"
                             autocomplete="off"
+                            data-search
                         />
                         <img src="./assets/search.svg" alt="" />
                     </div>
                 </form>
             </section>
             <section>
+                <div class="tag-container" data-container-tag></div>
                 <div class="dropdown-container">
                     <div class="dropdown-btn" data-dropdown>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -50,74 +51,102 @@
                             placeholder="Ingrédients"
                             name="Ingrédients"
                             data-dropdown-input
+                            data-dropdown-type="ingredients"
                         />
 
-                        <ul class="dropdown-menu">
-                            <li>Something else here</li>
-                            <li>Action</li>
-                            <li>Another action</li>
-                            <li>Action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                        </ul>
+                        <ul class="dropdown-menu ingredients"></ul>
                     </div>
                     <div class="dropdown-btn" data-dropdown>
                         <i class="fa-solid fa-chevron-down"></i>
                         <input
-                            class="dropdown-input"
+                            class="dropdown-input appliance"
                             type="text"
-                            placeholder="Ingrédients"
-                            name="Ingrédients"
+                            placeholder="Appareils"
+                            name="Appareils"
                             data-dropdown-input
+                            data-dropdown-type="appliance"
                         />
 
-                        <ul class="dropdown-menu">
-                            <li>Something else here</li>
-                            <li>Action</li>
-                            <li>Another action</li>
-                            <li>Action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                        </ul>
+                        <ul class="dropdown-menu appliance"></ul>
                     </div>
                     <div class="dropdown-btn" data-dropdown>
                         <i class="fa-solid fa-chevron-down"></i>
                         <input
-                            class="dropdown-input"
+                            class="dropdown-input ustensils"
                             type="text"
-                            placeholder="Ingrédients"
-                            name="Ingrédients"
+                            placeholder="Ustensiles"
+                            name="Ustensiles"
                             data-dropdown-input
+                            data-dropdown-type="ustensils"
                         />
 
-                        <ul class="dropdown-menu">
-                            <li>Something else here</li>
-                            <li>Action</li>
-                            <li>Another action</li>
-                            <li>Action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
-                            <li>Another action</li>
-                        </ul>
+                        <ul class="dropdown-menu ustensils"></ul>
                     </div>
                 </div>
-                <div class="grid"></div>
+                <div class="grid" data-recipe-card-container></div>
             </section>
+
+            <!-- Card Template -->
+            <template data-recipe-template>
+                <div class="card">
+                    <div class="card__image">
+                        <img src="" />
+                    </div>
+                    <div class="card__content">
+                        <div class="card__header">
+                            <h2 data-name></h2>
+                            <div class="card__timer">
+                                <img src="./assets/time.svg" />
+                                <span data-time></span>
+                            </div>
+                        </div>
+                        <div class="card__text">
+                            <ul
+                                class="card__recipe-list"
+                                data-list-container
+                            ></ul>
+                            <p
+                                class="card__recipe-instruction"
+                                data-description
+                            ></p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <!-- List Template -->
+            <template data-list-template>
+                <li class="card__recipe-list-name" data-ingredient>
+                    <span data-quantity></span>
+                </li>
+            </template>
+            <!-- Tag Template -->
+            <template data-template-tag>
+                <div class="tag-box">
+                    <span data-selected-tag></span>
+                    <img src="./assets/tag_close.svg" alt="" data-close-tag />
+                </div>
+            </template>
+            <!-- Error Message Template -->
+            <template data-template-error>
+                <span data-error-message>
+                    Aucune recette ne correspond à votre critère… vous pouvez
+                    chercher « tarte aux pommes », « poisson », etc.
+                </span>
+            </template>
         </main>
-        <!-- Scripts -->
-        <script src="./js/Views/RecipesViews.js"></script>
-        <script src="./js/Model/Model.js"></script>
-        <script src="./js/Controller.js"></script>
-        <script>
-            //  Affiche les données du controller
-            let controller = new Controller();
-            controller.dropdownDisplay();
-            controller.recipeDisplay();
-        </script>
     </body>
+    <!-- Scripts -->
+    <script src="./js/Model/RecipesModel.js"></script>
+    <script src="./js/service/EventListener.js"></script>
+    <script src="./js/service/Dropdown.js"></script>
+    <script src="./js/Views/CardsView.js"></script>
+    <script src="./js/Views/TagsView.js"></script>
+    <script src="./js/Controller.js"></script>
+    <script src="./js/service/RecipeSearch.js"></script>
+    <script>
+        let controller = new Controller();
+        controller.recipesDisplay();
+        controller.dropdownDisplay();
+        controller.tagDisplay();
+    </script>
 </html>
