@@ -62,6 +62,16 @@ class Controller {
             '[data-dropdown-input]',
             (e) => {
                 let currentDropdown = e.target.closest('[data-dropdown]');
+
+                // Close other active dropdowns before opening the current one
+                document
+                    .querySelectorAll('[data-dropdown].active')
+                    .forEach((dropdown) => {
+                        if (dropdown !== currentDropdown) {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+
                 currentDropdown.classList.toggle('active'); // Toggle the 'active' class on the dropdown menu
 
                 const dropdownType = e.target.dataset.dropdownType;
@@ -94,7 +104,6 @@ class Controller {
                 );
             }
         );
-
         //
         // CLOSE DROPDOWN
         // Add an event listener to close all active dropdown menus when a click occurs outside the menus
