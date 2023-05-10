@@ -71,25 +71,6 @@ class Dropdown {
         }
     }
 
-    // Define a method to update the dropdown menu with filtered items based on the input value.
-    updateDropdownMenuWithInputValue(dropdownMenu, inputValue) {
-        // Get the unique items for the dropdown menu and filter them based on the input value.
-        const items = this.getDropdownItems().filter((item) =>
-            item.toLowerCase().includes(inputValue.toLowerCase())
-        );
-
-        // Clear the existing content of the dropdown menu.
-        dropdownMenu.innerHTML = '';
-
-        // Append each filtered item as a list item to the dropdown menu.
-        items.forEach((item) => {
-            const li = document.createElement('li');
-            li.setAttribute('data-tag', item);
-            li.textContent = item.toLowerCase();
-            dropdownMenu.appendChild(li);
-        });
-    }
-
     // Method to update the dropdown menu with the matched items
     displayUpdatedDropdownMenu(dropdownType, items) {
         // Get the dropdown menu with the specified dropdownType
@@ -106,6 +87,25 @@ class Dropdown {
             listItem.textContent = item;
             listItem.setAttribute('data-tag', item);
             dropdownMenu.appendChild(listItem);
+        });
+    }
+
+    // Define a method to update the dropdown menu with filtered items based on the input value.
+    updateDropdownMenuWithInputValue(dropdownMenu, inputValue) {
+        // Get the unique items for the dropdown menu and filter them based on the input value.
+        const items = this.getDropdownItems().filter((item) =>
+            item.toLowerCase().includes(inputValue.toLowerCase())
+        );
+
+        // Clear the existing content of the dropdown menu.
+        dropdownMenu.innerHTML = '';
+
+        // Append each filtered item as a list item to the dropdown menu.
+        items.forEach((item) => {
+            const li = document.createElement('li');
+            li.setAttribute('data-tag', item);
+            li.textContent = item.toLowerCase();
+            dropdownMenu.appendChild(li);
         });
     }
 
