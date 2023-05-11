@@ -54,7 +54,11 @@ class RecipeSearch {
         const filteredRecipes = [];
 
         // Iterate over each recipe in the cardData array
-        this.cardData.forEach((recipe) => {
+        for (let i = 0; i < this.cardData.length; i++) {
+            
+            // Declare a recipe object
+            const recipe = this.cardData[i];
+            
             // Check if the recipe matches the search value
             const matchesSearch =
                 recipe.name.toLowerCase().includes(searchValue) || // Check if the recipe name includes the search value
@@ -104,11 +108,10 @@ class RecipeSearch {
 
             // Toggle the "hide" class on the recipe element based on its visibility
             recipe.element.classList.toggle('hide', !isVisible);
-
-        });
+        }
         // Update the dropdown menu with the filtered recipes
         dropdown.updateDropdownsWithFilteredRecipes(filteredRecipes);
-        
+
         this.initDisplayError();
     }
 
