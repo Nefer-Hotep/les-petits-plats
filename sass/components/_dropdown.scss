@@ -20,7 +20,6 @@
     }
 
     &-input {
-        // position: relative;
         color: $text-secondary;
         border: none;
         border-radius: $radius-primary;
@@ -29,6 +28,12 @@
         height: 69px;
         padding-left: 20px;
         z-index: 2;
+
+        @media (max-width: 375px) {
+            width: 280px;
+        }
+
+        
 
         &::placeholder {
             color: $text-secondary;
@@ -45,8 +50,8 @@
         font-weight: 400;
         max-height: 397px;
         overflow: auto;
-        display: none;
-        opacity: 0;
+        width: 0;
+
         &::-webkit-scrollbar {
             width: 0.5vw;
         }
@@ -58,18 +63,34 @@
 }
 
 .active {
+    > .dropdown-input {
+        transition: 350ms ease-out;
+        width: 667px;
+        border-radius: 5px 5px 0 0;
+        @media (max-width: 708px) {
+            width: 334px;
+        }
+        @media (max-width: 375px) {
+            width: 280px;
+        }
+    }
+
     > .dropdown-menu {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
         width: 100%;
         border-radius: 0 0 5px 5px;
         z-index: 1;
-        opacity: 1;
+        @media (max-width: 868px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 375px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
         & li {
             border-radius: $radius-primary;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
             font-size: 18px;
             color: $text-secondary;
             margin: 5px 10px 5px 10px;
@@ -79,13 +100,7 @@
             cursor: pointer;
         }
     }
-    
-    > .dropdown-input {
-        transition: 350ms ease-out;
-        width: 647px;
-        border-radius: 5px 5px 0 0;
-    }
-    
+
     > i {
         transition: 350ms ease-out;
         rotate: 180deg;
