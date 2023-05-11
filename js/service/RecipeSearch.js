@@ -64,9 +64,10 @@ class RecipeSearch {
             // Check if the recipe matches the search value
             let matchesSearch = false;
             // Check if the name matches the search value
-            if (name.toLowerCase().includes(searchValue)) matchesSearch = true;
-            // Check if the recipe description includes the search value
-            if (description.toLowerCase().includes(searchValue))
+            if (
+                name.toLowerCase().includes(searchValue) ||
+                description.toLowerCase().includes(searchValue)
+            )
                 matchesSearch = true;
             // Check if any ingredients in the recipe includes the search value
             for (let j = 0; j < ingredients.length; j++) {
