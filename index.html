@@ -25,66 +25,62 @@
             </div>
         </header>
         <main class="container">
-            <section>
-                <form class="search-input-container">
-                    <div class="search-input-wrapper">
-                        <input
-                            type="text"
-                            placeholder="Rechercher un recette"
-                            id="search"
-                            aria-label="Rechercher une recette"
-                            autocomplete="off"
-                            data-search
-                        />
-                        <img src="./assets/search.svg" alt="" />
-                    </div>
-                </form>
-            </section>
-            <section>
-                <div class="tag-container" data-container-tag></div>
-                <div class="dropdown-container">
-                    <div class="dropdown-btn" data-dropdown>
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <input
-                            class="dropdown-input"
-                            type="text"
-                            placeholder="Ingrédients"
-                            name="Ingrédients"
-                            data-dropdown-input
-                            data-dropdown-type="ingredients"
-                        />
-
-                        <ul class="dropdown-menu ingredients"></ul>
-                    </div>
-                    <div class="dropdown-btn" data-dropdown>
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <input
-                            class="dropdown-input appliance"
-                            type="text"
-                            placeholder="Appareils"
-                            name="Appareils"
-                            data-dropdown-input
-                            data-dropdown-type="appliance"
-                        />
-
-                        <ul class="dropdown-menu appliance"></ul>
-                    </div>
-                    <div class="dropdown-btn" data-dropdown>
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <input
-                            class="dropdown-input ustensils"
-                            type="text"
-                            placeholder="Ustensiles"
-                            name="Ustensiles"
-                            data-dropdown-input
-                            data-dropdown-type="ustensils"
-                        />
-
-                        <ul class="dropdown-menu ustensils"></ul>
-                    </div>
+            <form class="search-input-container">
+                <div class="search-input-wrapper">
+                    <input
+                        type="text"
+                        placeholder="Rechercher un recette"
+                        id="search"
+                        aria-label="Rechercher une recette"
+                        autocomplete="off"
+                        data-search
+                    />
+                    <img src="./assets/search.svg" alt="" />
                 </div>
-                <div class="grid" data-recipe-card-container></div>
-            </section>
+            </form>
+            <div class="tag-container" data-container-tag></div>
+            <div class="dropdown-container">
+                <div class="dropdown-btn" data-dropdown>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <input
+                        class="dropdown-input"
+                        type="text"
+                        placeholder="Ingrédients"
+                        name="Ingrédients"
+                        data-dropdown-input
+                        data-dropdown-type="ingredients"
+                    />
+
+                    <ul class="dropdown-menu ingredients"></ul>
+                </div>
+                <div class="dropdown-btn" data-dropdown>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <input
+                        class="dropdown-input appliance"
+                        type="text"
+                        placeholder="Appareils"
+                        name="Appareils"
+                        data-dropdown-input
+                        data-dropdown-type="appliance"
+                    />
+
+                    <ul class="dropdown-menu appliance"></ul>
+                </div>
+                <div class="dropdown-btn" data-dropdown>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <input
+                        class="dropdown-input ustensils"
+                        type="text"
+                        placeholder="Ustensiles"
+                        name="Ustensiles"
+                        data-dropdown-input
+                        data-dropdown-type="ustensils"
+                    />
+
+                    <ul class="dropdown-menu ustensils"></ul>
+                </div>
+            </div>
+            <div class="grid" data-recipe-card-container></div>
 
             <!-- Card Template -->
             <template data-recipe-template>
@@ -134,19 +130,19 @@
                 </span>
             </template>
         </main>
+        <!-- Scripts -->
+        <script src="./js/Model/RecipesModel.js"></script>
+        <script src="./js/service/EventListener.js"></script>
+        <script src="./js/service/Dropdown.js"></script>
+        <script src="./js/Views/CardsView.js"></script>
+        <script src="./js/Views/TagsView.js"></script>
+        <script src="./js/Controller.js"></script>
+        <script src="./js/service/RecipeSearch.js"></script>
+        <script>
+            let controller = new Controller();
+            controller.recipesDisplay();
+            controller.dropdownDisplay();
+            controller.tagDisplay();
+        </script>
     </body>
-    <!-- Scripts -->
-    <script src="./js/Model/RecipesModel.js"></script>
-    <script src="./js/service/EventListener.js"></script>
-    <script src="./js/service/Dropdown.js"></script>
-    <script src="./js/Views/CardsView.js"></script>
-    <script src="./js/Views/TagsView.js"></script>
-    <script src="./js/Controller.js"></script>
-    <script src="./js/service/RecipeSearch.js"></script>
-    <script>
-        let controller = new Controller();
-        controller.recipesDisplay();
-        controller.dropdownDisplay();
-        controller.tagDisplay();
-    </script>
 </html>
