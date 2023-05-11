@@ -3,7 +3,7 @@
 class RecipesModel {
     // Récupère les données de l'API
     async getRecipes() {
-        return fetch('../data/recipes.js')
+        return fetch('./data/recipes.js')
             .then((res) => res.json())
             .then((data) => {
                 return data;

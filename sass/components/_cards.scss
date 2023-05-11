@@ -3,6 +3,9 @@
     flex-wrap: wrap;
     gap: 50px;
     margin-top: 25px;
+    @media (max-width : 830px) {
+        gap: 10px;
+    }
 }
 
 .card {
