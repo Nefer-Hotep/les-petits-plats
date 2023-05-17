@@ -156,4 +156,13 @@
             cursor: pointer;
         }
     }
+    &-ingredients {
+        background-color: $color-ingredients-secondary;
+    }
+    &-appliance {
+        background-color: $color-appliance-secondary;
+    }
+    &-ustensils {
+        background-color: $color-ustensils-secondary;
+    }
 }

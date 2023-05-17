@@ -34,6 +34,26 @@ class TagsView {
         selectedTag.textContent = currentTags;
         selectedTag.dataset.selectedTag = currentTags;
 
+        // Select all the tags
+        const dataTags = document.querySelectorAll('[data-tag]');
+
+        // Iterate through the existing tags and aplly the style inside the menu
+        for (const dataTag of dataTags) {
+            if (dataTag.textContent == currentTags) {
+                switch (dropdownType) {
+                    case 'ingredients':
+                        dataTag.setAttribute('class', 'tag-ingredients');
+                        break;
+                    case 'appliance':
+                        dataTag.setAttribute('class', 'tag-appliance');
+                        break;
+                    case 'ustensils':
+                        dataTag.setAttribute('class', 'tag-ustensils');
+                        break;
+                }
+            }
+        }
+
         // Initialize a flag to track whether the currentTags value already exists in the tagContainer
         let tagExists = false;
 

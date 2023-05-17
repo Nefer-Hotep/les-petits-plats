@@ -1,0 +1,29 @@
+@startuml Programmation fonctionnelle avec les méthodes d’objet Array (foreach, filter, map, reduce)
+
+start
+
+:Prend en argument (searchValue);
+
+:Foreach recipe in cardData;
+
+if (Le nom de la recette correspond à la valeur de recherche) then (yes)
+    :matchesSearch = true;
+else (no)
+    if (La description de la recette comprend la valeur de recherche) then (yes)
+        :matchesSearch = true;
+    else (no)
+        :Foreach item in recipe.ingredients;
+        if (Item correspond à la valeur de recherche) then (yes)
+            :matchesSearch = true;
+        else (no)
+            :Continuer la boucle;
+        endif
+        :Fin de la boucle des ingrédients;
+    endif
+endif
+
+:Fin de la boucle des recettes;
+
+stop
+
+@enduml
