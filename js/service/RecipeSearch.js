@@ -49,26 +49,42 @@ class RecipeSearch {
     }
 
     searchAndFilterCards(searchValue) {
-        const dropdown = new Dropdown();
         // Create an array to store the filtered recipes
         const filteredRecipes = [];
 
         // Iterate over each recipe in the cardData array
-        this.cardData.forEach((recipe) => {
+        for (let i = 0; i < this.cardData.length; i++) {
+            const recipe = this.cardData[i];
+            const name = recipe.name;
+            const description = recipe.description;
+            const ingredients = recipe.ingredients;
+            const appliances = recipe.appliance;
+            const ustensils = recipe.ustensils;
+
             // Check if the recipe matches the search value
-            const matchesSearch =
-                recipe.name.toLowerCase().includes(searchValue) || // Check if the recipe name includes the search value
-                recipe.description.toLowerCase().includes(searchValue) || // Check if the recipe description includes the search value
-                recipe.ingredients.some(
-                    (
-                        item // Check if any ingredient in the recipe includes the search value
-                    ) => item.ingredient.toLowerCase().includes(searchValue)
-                );
+            let matchesSearch = false;
+            // Check if the name matches the search value
+            if (
+                name.toLowerCase().includes(searchValue) ||
+                description.toLowerCase().includes(searchValue)
+            )
+                matchesSearch = true;
+            // Check if any ingredients in the recipe includes the search value
+            for (let j = 0; j < ingredients.length; j++) {
+                if (
+                    ingredients[j].ingredient
+                        .toLowerCase()
+                        .includes(searchValue)
+                ) {
+                    matchesSearch = true;
+                    break;
+                }
+            }
 
             // Check if the recipe matches all the ingredient filters
             const matchesIngredientsFilter = this.filters.ingredients.every(
                 (ingredient) =>
-                    recipe.ingredients.some((item) =>
+                    ingredients.some((item) =>
                         item.ingredient
                             .toLowerCase()
                             .includes(ingredient.toLowerCase())
@@ -77,15 +93,13 @@ class RecipeSearch {
             // Check if the recipe matches all the appliance filters
             const matchesApplianceFilter = this.filters.appliance.every(
                 (appliance) =>
-                    recipe.appliance
-                        .toLowerCase()
-                        .includes(appliance.toLowerCase())
+                    appliances.toLowerCase().includes(appliance.toLowerCase())
             );
 
             // Check if the recipe matches all the ustensils filters
             const matchesUstensilsFilter = this.filters.ustensils.every(
                 (ustensil) =>
-                    recipe.ustensils.some((item) =>
+                    ustensils.some((item) =>
                         item.toLowerCase().includes(ustensil.toLowerCase())
                     )
             );
@@ -104,11 +118,12 @@ class RecipeSearch {
 
             // Toggle the "hide" class on the recipe element based on its visibility
             recipe.element.classList.toggle('hide', !isVisible);
+        }
 
-        });
         // Update the dropdown menu with the filtered recipes
+        const dropdown = new Dropdown();
         dropdown.updateDropdownsWithFilteredRecipes(filteredRecipes);
-        
+
         this.initDisplayError();
     }
 

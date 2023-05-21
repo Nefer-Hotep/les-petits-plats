@@ -115,6 +115,8 @@ class Dropdown {
         let appliances = [];
         let ustensils = [];
 
+        
+
         filteredRecipes.forEach((recipe) => {
             // Ingredients
             recipe.ingredients.forEach((ingredient) => {

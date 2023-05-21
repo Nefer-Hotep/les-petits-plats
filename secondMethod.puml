@@ -1,0 +1,30 @@
+@startuml Programmation impérative (boucles natives)
+
+start
+
+:Prend en argument (searchValue);
+
+:Pour i de 0 à cardData.length;
+
+:Initialisation de matchesSearch à false;
+
+:Obtenir une recette à partir de cardData[i];
+
+if (Le nom ou la description correspond à la valeur de recherche) then (yes)
+    :matchesSearch = true;
+else (no)
+    :Pour j de 0 à ingredients.length;
+    if (L'ingrédient correspond à la valeur de recherche) then (yes)
+        :matchesSearch = true;
+        :Sortir de la boucle;
+    else (no)
+        :Continuer la boucle;
+    endif
+    :Fin de la boucle des ingrédients;
+endif
+
+:Fin de la boucle des recettes;
+
+stop
+
+@enduml
