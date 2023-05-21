@@ -32,9 +32,6 @@
         @media (max-width: 375px) {
             width: 280px;
         }
-
-        
-
         &::placeholder {
             color: $text-secondary;
         }
@@ -155,5 +152,14 @@
             line-height: 50%;
             cursor: pointer;
         }
+    }
+    &-ingredients {
+        background-color: $color-ingredients-secondary;
+    }
+    &-appliance {
+        background-color: $color-appliance-secondary;
+    }
+    &-ustensils {
+        background-color: $color-ustensils-secondary;
     }
 }
